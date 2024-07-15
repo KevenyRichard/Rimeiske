@@ -1,0 +1,1033 @@
+/* ----- Inicio resposividade de todas as paginas ----- */
+@font-face{
+    font-family: Octapost;
+    src:url('../fonts/OctapostNbp-3e0X.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+    font-family: XCompany;
+    src:url('../fonts/XCompany-ZV0em.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+    font-family: LostFish;
+    src:url('../fonts/LostFish-5DOz.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background-color: #320000;
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#magic-box {
+    margin: 0;
+    display: flex;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+#container {
+    display: flex;
+    position: absolute;
+    width: 96vw;
+    height: 100vh;
+    margin-left: 4vw;
+    align-items: center;
+    justify-content: space-around;
+    transition: 0.4s;
+}
+
+#container.opened {
+    height: 100vh;
+    width: 70vw;
+    margin-left: 30vw;
+    transition: 0.4s;
+}
+/* ----- Fim Responsividade de todas paginas ----- */
+
+/* ----- Menu Responsivo ----- */
+
+#header {
+    display: flex;
+    position: relative;
+    height: 6vh;
+    width: 4vw;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5vh 0 7vh;
+    flex-wrap: wrap;
+    margin-left: -2vw;
+    transition: 0.4s;
+    font-family: fantasy;
+}
+
+#header.open {
+    height: 100vh;
+    width: 30vw;
+    transition: 0.4s;
+    background-color: #59161c;
+    border-radius: 1vh;
+}
+
+/* Icone menu-animado */
+.menu-animated {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: -1vw;
+  }
+  
+  .bar1, .bar2, .bar3 {
+    width: 1.8vw;
+    height: 0.5vh;
+    background-color: #ffffff;
+    margin: 0.6vh 0;
+    transition: 0.4s;
+    margin-top: 0.5vh;
+  }
+  
+  /* Rotate first bar */
+  .change .bar1 {
+    transform: translate(0, 1.1vh) rotate(-45deg);
+  }
+  
+  /* Fade out the second bar */
+  .change .bar2 {opacity: 0;}
+  
+  /* Rotate last bar */
+  .change .bar3 {
+    transform: translate(0, -1.1vh) rotate(45deg);
+  }
+/* Fim Menu Animado */  
+
+#tb-menu {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 95%;
+    transition: 0.4s;
+}
+
+#tb-menu.open {
+    display: flex;
+    transition: 0.4s;
+}
+
+#tb-menu #logo img {
+    width: 2vw;
+    height: 4vh;
+    margin-top: 2vh;
+    margin-left: 1vw;
+}
+
+#tb-menu #logo p {
+    margin-left: 5vw;
+    margin-top: -5vh;
+}
+
+#tb-menu #logo p a {
+    font-family: LostFish;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 2vw;
+    font-weight: 600;
+}
+
+#tb-menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-left: -11vw;
+    margin-right: 1vw;
+    margin-top: 10vh;
+    justify-content: center;
+}
+
+#tb-menu ul .avaliacao {
+    display: inline-flex!important ;
+    text-align: center;
+}
+
+#tb-menu ul li a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 3vh;
+    font-weight: 500;
+    padding: 0.4vh 1.5vh;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+#tb-menu ul li a img {
+    justify-content: center;
+    width: 3vh;
+    height: 3vh;
+}
+
+#tb-menu ul li a:hover {
+    color: #e63c6d;
+    background: none;
+}
+
+.dark-menu {
+    color: rgba(70, 69, 69, 0.842) !important;
+}
+
+.dark-menu:hover {
+    color: rgba(143, 143, 143, 0.842) !important;
+}
+
+/* ----- Dispositivos Móveis -----*/
+@media (max-width: 920px) {
+    #tb-menu #logo {
+        margin-top: 1vh;
+        margin-left: -15vw;
+    }
+
+    #tb-menu #logo img{
+        width: 12vw;
+        height: 5vh;
+    }
+
+    #tb-menu #logo p{
+        margin-left: 15vw;
+        margin-top: -5vh;
+        font-size: 7vw;
+        font-weight: 600;
+    }
+
+    #tb-menu #ico-menu i{
+        display: block;
+        margin-left: 70vw;
+        margin-top: -5vh;
+    }
+    #tb-menu ul {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        height: 100vh;
+        width: 100%;
+        text-align: center;
+        display: block;
+        transition: all 0.3s ease;
+    }
+    #tb-menu ul.open {
+        left: 0;
+    }
+    #tb-menu ul li {
+        width: 100%;
+        margin: 7vh 0;
+    }
+    #tb-menu ul li a {
+        font-size: 2vh;
+    }
+    #tb-menu ul li a.active,
+    #tb-menu ul li a:hover {
+    background: none;
+    color: #e63c6d;
+    }
+    #type-mood {
+        margin-left: 40vw;
+    }
+}
+/* ----- ----- */
+
+/* ----- ----- INICIO TELA DE LOGIN ----- ----- */
+
+/* ----- Inicio Painel De Login (Nvl0-Login.php) ----- */
+.painel_login {
+    position: relative;
+    background-color: #59161c;
+    width: 30vw;
+    height: 75vh;
+    align-items: center;
+    border-radius: 4vh;
+    opacity: 1;
+}
+
+.dark-login {
+    background-color: #da5700;
+    opacity: 0.83;
+}
+
+.login_usuario {
+    padding-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.painel_login label {
+    font-size: 6vh;
+    color: white;
+}
+
+.login_senha {
+    padding-top: 6vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cp_login {
+    height: 6vh;
+    width: 20vw;
+    border-radius: 1vh;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-size: 3vh;
+    padding-left: 1vw;
+}
+
+.dark-cp {
+    background-color: black;
+    color: white;
+}
+
+.botoes_login {
+
+    flex-direction: inline;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2vh 4vw;
+
+}
+
+/* ----- Dispositivos Móveis -----*/
+@media (max-width: 920px) {
+    #conteiner {
+        margin-top: 8vh;
+        align-items: center;
+    }
+
+    #page-title {
+        margin-top: -80vh;
+        align-items: center;
+        margin-left: -2vw;
+    }
+
+    #page-title h1 {
+        font-size: 24px;
+    }
+}
+/* ----- Fim Painel De Login (Nvl0-Login.php) ----- */
+
+/* ----- Inicio Video Introdução -----*/
+.video_introducao {
+    display: table-column;
+    align-items: center;
+    justify-content: center;
+    width: 45vw;
+    height: 60vh;
+}
+
+.video_introducao iframe {
+    width: 45vw;
+    height: 53vh;
+}
+
+.texto_introducao {
+    display: inline-flexbox;
+    justify-content: space-between;
+    color: white;
+    text-align: center;
+    font-size: 3vh;
+}
+
+.video_introducao iframe.open {
+    width: 40vw;
+    height: 40vh;
+    margin-left: 1vw;
+}
+
+.texto_introducao.open {
+    font-size: 2vh;
+}
+/* ----- Fim Video Introdução ----- */
+
+/* ----- ----- FIM TELA DE LOGIN ----- ----- */
+
+/* ----- ----- INICIO TELA DE CADASTRO ----- ----- */
+
+/* ----- Inicio Painel de Cadastro ----- */
+.painel_cadastro {
+    display: flex;
+    position: absolute;
+    background-color: #59161c;
+    width: 50vw;
+    height: 60vh;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4vh;
+    opacity: 1;
+}
+
+.painel_cadastro p {
+    font-size: 6vh;
+    margin-right: 10vw;
+    color: white;
+}
+
+.form_cadastro {
+    display: flexbox;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_cadastro label {
+    font-size: 3vh;
+    align-items: center;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.label_cadastro {
+    font-size: 2.5vh;
+    align-items: center;
+    color: white;
+    letter-spacing: 0.1vh;
+}
+
+.form_cadastro input, select {
+    width: 25vw;
+    height: 5vh;
+    border-radius: 0.8vh;
+    color: black;
+    font-size: 3vh;
+    padding-left: 1vw;
+}
+
+.form_cadastro .input_cadastro {
+    width: 25vw;
+    height: 4vh;
+    border-radius: 0.8vh;
+    color: black;
+    font-size: 2.5vh;
+    padding-left: 1vw;
+}
+
+.botoes_form {
+    display: inline-block;
+    margin-top: 2vh;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4vw;
+}
+
+/* ----- Fim Painel de Cadastro ----- */
+
+/* ----- ----- FIM TELA DE CADASTRO ----- ----- */
+
+/* ----- ----- INICIO TELA AVALIAÇÃO DO SISTEMA ----- ----- */
+
+.painel_avaliacao {
+    display: flex;
+    position: absolute;
+    background-color: #59161c;
+    width: 50vw;
+    height: 60vh;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4vh;
+    opacity: 1;
+}
+
+.painel_avaliacao p {
+    position: fixed;
+    display: inline-block;
+    margin-top: -45vh;
+    text-align: center;
+    width: 40vw;
+    font-size: 5vh;
+    margin-right: 2vw;
+    color: white;
+}
+
+.form_avaliacao {
+    position: relative;
+    display: flexbox;
+    color: white;
+    font-size: 4vh;   
+    text-align: center;
+}
+.form_avaliacao label {
+    font-size: 3vh;
+}
+
+.form_avaliacao textarea {
+    height: 25vh;
+    border-radius: 1vh;
+    font-size: 2.5vh;
+    padding: 1vh;
+    margin-top: 2vh;
+}
+
+.form_avaliacao .botoes_form {
+    margin-bottom: -10vh;
+}
+
+/* ----- ----- FIM TELA AVALIAÇÃO DO SISTEMA ----- ----- */
+
+/* ----- ----- INICIO TABELAS ----- ----- */
+.tabela_modif {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 0.1vh;
+    margin-top: 2vh;
+    width: 100%;
+}
+
+.tabela_modif label {
+    font-size: 4vh;
+    color: white;
+    letter-spacing: 0.2vh;
+}
+
+.tabela_modif input, select{
+    font-size: 3vh;
+    padding-left: 2vh;
+    margin-bottom: 2vh;
+    border-radius: 1vh;
+    letter-spacing: 0.2vh;
+}
+/* ----- ----- FIM TABELAS ----- ----- */
+
+/* ----- ----- INICIO TELA VER SERVIÇOS (Nvl2-VerServicos.php) ----- ----- */
+
+/* ----- Inicio Tabela de Serviços ----- */
+.dados_servicos {
+    display: inline-block;
+    position: absolute;
+    background-color: #59161c;
+    width: 60vw;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 4vh;
+    opacity: 1;
+    
+}
+
+.tabela_servicos {
+    border: 0.1vh;
+    margin-top: 2vh;
+    width: 100%;
+}
+
+.tabela_servicos b {
+    font-size: 4vh;
+    color: white
+}
+
+.chamados-info {
+    display: table-row;
+    padding-top: 5vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vh;
+    color: white;
+    letter-spacing: 2px;
+    width: 100%;
+    height: 5vh;
+    background-color: #a64255;
+}
+
+.buttons_solicitacoes {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 2% 10%;
+    width: 50vw;
+}
+
+.buttons_solicitacoes #PagAnt {
+    margin-right: 5vw;
+}
+
+.buttons_solicitacoes #PagProx {
+    margin-left: 5vw;
+}
+
+.buttons_solicitacoes #indicePag {
+    display: inline-flex;
+    position: relative;
+    font-size: 2.5vh;
+    color: white;
+    padding: 0 1vw 0 1vw;
+    text-decoration: none;
+    letter-spacing: 0.2vh;
+}
+/* ----- ----- FIM TELA VER SERVIÇOS (Nvl2-VerServicos.php) ----- ----- */
+
+.tabela_perfil {
+    display: inline-flexbox;
+    position: relative;
+    text-align: center;
+    margin-top: 20vh;
+}
+
+.tabela_perfil label {
+    font-size: 5vh;
+    color: white;
+}
+
+.tabela_perfil #matricula {
+    width: 15vw;
+    height: 5vh;
+    font-size: 4vh;
+    border-radius: 1vh;
+    padding-left: 1vh;
+}
+
+.tabela_perfil #password-field {
+    width: 15vw;
+    height: 5vh;
+    font-size: 5vh;
+    border-radius: 1vh;
+    padding-left: 1vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.alertas {
+    position: fixed;
+    display: flex;
+    background-color: #a64255;
+    display: inline-block;
+    color: white;
+    right: 1vw;
+    top: 5vh;
+    width: 20vw;
+    height: auto;
+    border-radius: 1vh;
+    padding-bottom: 3vh;
+    text-align: center;
+    color: white;
+    font-size: 3vh;
+    padding-top: 2vh;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.alertas.close {
+    opacity: 0;
+}
+
+.mensagem {
+    color: white;
+    font-size: 3vh;
+}
+
+/* ----- ----- INICIO TELA PERFIL DE ADMIN E FUNCIONARIOS (Nvl1-Perfil.php) ----- ----- */
+.dados {
+    display: table-row;
+    position: absolute;
+    background-color: #59161c;
+    width: 60vw;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4vh;
+    opacity: 1;
+}
+
+.campo_perfil {
+    padding-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vh;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.botoes_perfil {
+    position: absolute;
+    padding-top: 5vh;
+    display: inline-flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vh;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+/* ----- ----- FIM TELA PERFIL DE ADMIN E FUNCIONARIOS (Nvl1-Perfil.php) ----- ----- */
+
+/* ----- ----- INICIO TELA GERENCIAMENTO DE USUARIO (Nvl2-Gerenciamento.php) ----- ----- */
+
+.dados_gerenciamento {
+    display: inline-block;
+    position: absolute;
+    background-color: #59161c;
+    width: 60vw;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4vh;
+    opacity: 1;
+}
+
+.tabela_gerenciamento {
+    display: inline-block;
+    position: relative;
+    border: 2px;
+    margin-top: 2vh;
+}
+
+.tabela_gerenciamento b {
+    font-size: 4vh;
+    color: white
+}
+
+.gerenciamento-info {
+    display: table-row;
+    padding-top: 5vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vh;
+    color: white;
+    letter-spacing: 0.2vh;
+    width: 100%;
+    height: 5vh;
+    background-color: #a64255;
+}
+
+.gerenciamento-info th {
+    padding: 1vh;
+}
+
+.informacoes {
+    display: table-row;
+    background-color: #802c39;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2vh;
+}
+
+.informacoes td {
+    padding: 1vh;
+}
+
+.botoes_usuarios {
+    display: inline-block;
+    position: relative;
+}
+
+.btnAltPerf {
+    padding: 0.2vh;
+}
+
+/* ----- ----- FIM TELA GERENCIAMENTO DE USUARIO (Nvl2-Gerenciamento.php) ----- ----- */
+
+/* ----- ----- INICIO TELA DE CHAMADO (SolicitarServico.php) ----- ----- */
+.chamado {
+    display: inline-block;
+    position: absolute;
+    background-color: #59161c;
+    width: 60vw;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5vh;
+    opacity: 1;
+}
+
+.campo_chamado {
+    padding-top: 5vh;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10vh;
+}
+
+.campo_chamado1 {
+    margin-top: 5vh;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10vh;
+}
+
+.chamado label {
+    align-items: center;
+    justify-content: center;
+    padding-right: 5vw;
+    font-size: 3vh;
+    color: white;
+    letter-spacing: 0.2vh;
+}
+
+.campo_insercao {
+    height: 6vh;
+    width: 20vw;
+    font-size: 3vh;
+    text-align: center;
+    border-radius: 1vh;
+}
+
+.campo_dpto {
+    width: 4vh;
+}
+/* ----- ----- FIM TELA DE CHAMADO (Nvl0-SolicitarServico.php) ----- ----- */
+
+/* ----- ----- INICIO TELA DE ESTOQUE (Nvl1-Estoque.php) ----- ----- */
+
+.Acoes_produtos {
+    display: inline-block;
+    margin-top: -5vh;
+    margin-bottom: 1vh;
+    width: 15vw;
+}
+
+.title_estoque {
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.estoque_patrimonio {
+    display: inline-block;
+    margin-top: -5vh;
+    margin-bottom: 1vh;
+    width: 18vw;
+}
+
+.estoque_produtos {
+    display: inline-block;
+    margin-top: -5vh;
+    margin-bottom: 1vh;
+    width: 16vw;
+}
+
+.buttons_estoque {
+    display: inline-block;
+    padding-top: 0.2vh;
+    padding-bottom: 0.2vh;
+    text-align: center;
+}
+
+/* ----- ----- FIM TELA DE ESTOQUE (Nvl1-Estoque.php) ----- ----- */
+
+/* ----- BOTOES ----- */
+
+/* ----- ----- INICIO BOTÃO GERAL ----- ----- */
+.btn {
+    display: inline-block;
+    padding: 1vh 2vh;
+    color: white;
+    text-decoration: none;
+    background-color: #4CAF50;
+    font-size: 3vh;
+    border: none;
+    border-radius: 1vh;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btns {
+    display: inline-block;
+    padding-top: 1vh;
+}
+
+.btnPequeno {
+    padding: 0.5vh 1vh;
+    font-size: 2vh;
+    border-radius: 0.5vh;
+}
+
+.btn:hover {
+    background-color: #3f9243;
+}
+/* ----- ----- FIM BOTÃO GERAL ----- ----- */
+
+/* ----- ----- INICIO BOTÕES DE LOGIN (login.php) ----- ----- */
+.btn_cadastro {
+    font-size: 4vh;
+    margin-right: 1.5vw;
+}
+
+.btn_login {
+    font-size: 4vh;
+}
+/* ----- ----- FIM BOTÕES DE LOGIN (login.php) ----- ----- */
+
+/* ----- ----- INICIO BOTÕES DE CADASTRO (cadastro.php) ----- ----- */
+#button_retornar {
+    margin-right: 1.5vw;
+}
+
+#button_cadastro {
+    margin-left: 1.5vw;
+}
+/* ----- ----- FIM BOTÕES DE CADASTRO (cadastro.php) ----- ----- */
+
+/* ----- ----- INICIO BOTÕES DE PERFIL (perfil.php) ----- ----- */
+
+.btn_sair {
+    margin-left: 1.5vw;
+}
+
+.btn_deletarPerfil {
+    margin-left: 1.5vw;
+}
+/* ----- ----- FIM BOTÕES DE PERFIL (perfil.php) ----- ----- */
+
+/* ----- ----- INICIO BOTÕES DE VER CHAMADOS (chamados.php) ----- ----- */
+
+.btn_verServicos {
+    margin-top: 0.2vh;
+    margin-bottom: 0.2vh;
+}
+/* ----- ----- FIM BOTÕES DE VER CHAMADOS (chamados.php) ----- ----- */
+
+/* ----- ----- INICIO BOTÕES DE ESTOQUE (Estoque.php) ----- ----- */
+
+.btn_alterarProduto {
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+}
+
+.btn_garantia {
+    margin-bottom: 0.5vh;
+}
+
+.btn_excluir {
+    margin-bottom: 0.5vh;
+}
+/* ----- ----- FIM BOTÕES DE ESTOQUE (Estoque.php) ----- ----- */
+
+/* ----- ----- INICIO BOTÕES DE CHAMADO (chamado.php) ----- ----- */
+.btn_chamado {
+    margin-left: 1.5vw;
+}
+/* ----- ----- FIM BOTÕES DE CHAMADO (chamado.php) ----- ----- */
+
+.btn_vermelho {
+    background-color: #cd5872;
+}
+
+.btn_vermelho:disabled {
+    cursor: not-allowed;
+}
+
+.btn_vermelho:hover {
+    background-color: #a64255;
+}
+
+.btn_verde {
+    background-color: #4CAF50;
+}
+
+.btn_verde:hover {
+    background-color: #45a049;
+}
+
+.btn_amarelo {
+    background-color: yellow;
+    color: black;
+}
+
+.btn_amarelo:disabled {
+    cursor: not-allowed;
+}
+
+.btn_amarelo:hover {
+    background-color: rgb(219, 219, 0);
+}
+
+.sucesso{
+    color: white;
+}
+
+.fracasso{
+    color: white;
+}
+/* ----- BOTOES ----- */
+
+/* ----- Inicio Footer -----*/
+#footer {
+    position: fixed;
+    display: table-column;
+    bottom: 1vh;
+    width: 60vw;
+    background-color: #320000;
+}
+
+#footer.open {
+    display: inline;
+    right: 0;
+    width: 70vw;
+    transition: 0.4s;
+}
+
+#footer .icons {
+    padding-left: 25vw;
+    padding-top: 2vh;
+    list-style: none;
+}
+#footer .icon1 img {
+    height: 3vh;
+    width: 1.5vw;
+}
+
+#footer .icon1 {
+    text-decoration: none;
+    color: white;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 2vh;
+}
+
+#footer .copyright {
+    margin-left: 21.5vw;
+    padding-top: 1vh;
+    transition: 0.4s;
+    color: white;
+    font-size: 1.8vh;
+}
+
+#footer .icons.open {
+    padding-left: 32.5vw;
+    transition: 0.4s;
+}
+
+#footer .copyright.open {
+    padding-left: 7.5vw;
+    transition: 0.4s;
+}
+
+/* ----- Fim Footer ----- */

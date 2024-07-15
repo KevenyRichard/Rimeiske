@@ -1,0 +1,217 @@
+CREATE DATABASE UniHelp;
+USE UniHelp;
+
+CREATE TABLE setor(
+cod_setor INT(3) AUTO_INCREMENT NOT NULL,
+nome_setor VARCHAR(25) NOT NULL,
+CONSTRAINT pk_cod_setor PRIMARY KEY (cod_setor),
+CONSTRAINT u_nome_setor UNIQUE(nome_setor)
+);
+
+CREATE TABLE clientes(
+cod_cliente INT(6) AUTO_INCREMENT NOT NULL,
+nome_cliente VARCHAR(45) NOT NULL,
+cpf BIGINT(11) ZEROFILL,
+ra INT(5) ZEROFILL NOT NULL,
+tipo INT(1) DEFAULT (0),
+acervo INT(3),
+senha VARCHAR(32) NOT NULL,
+CONSTRAINT pk_cod_cliente PRIMARY KEY (cod_cliente),
+CONSTRAINT u_cpf UNIQUE(cpf),
+CONSTRAINT u_ra UNIQUE(ra),
+CONSTRAINT ck_tipo CHECK(tipo IN (0,1,2)),
+CONSTRAINT fk_acervo FOREIGN KEY (acervo) REFERENCES setor(cod_setor)
+);
+
+CREATE TABLE local(
+cod_local INT(6) AUTO_INCREMENT NOT NULL,
+nome_local VARCHAR(25) NOT NULL,
+CONSTRAINT pk_cod_local PRIMARY KEY (cod_local),
+CONSTRAINT u_nome_local UNIQUE(nome_local)
+);
+
+CREATE TABLE produto(
+cod_produto INT(6) AUTO_INCREMENT NOT NULL,
+nome_produto VARCHAR(45) NOT NULL,
+quantidade INT(3),
+patrimonio varchar(6),
+garantia DATE,
+ativo BOOLEAN NOT NULL,
+CONSTRAINT pk_cod_produto PRIMARY KEY (cod_produto),
+CONSTRAINT ck_ativo CHECK(ativo IN ('0','1')),
+CONSTRAINT ck_quantidade CHECK(quantidade>=0)
+);
+
+CREATE TABLE servicos(
+cod_servico INT(6) AUTO_INCREMENT NOT NULL,
+descricao VARCHAR(250) NOT NULL,
+fk_local INT(6) NOT NULL,
+fk_cliente INT(6) NOT NULL,
+fk_setor INT(3) NOT NULL,
+funcionario INT(6) DEFAULT(NULL),
+nome_func VARCHAR(45),
+cancelamento VARCHAR(150),
+data_agendado TIMESTAMP NOT NULL,
+data_pedido TIMESTAMP DEFAULT (CURRENT_TIMESTAMP()),
+data_finalizado TIMESTAMP NULL,
+CONSTRAINT pk_cod_servico PRIMARY KEY (cod_servico),
+CONSTRAINT u_cod_servico UNIQUE (fk_cliente,fk_local,data_agendado),
+CONSTRAINT fk_cod_do_setor FOREIGN KEY (fk_setor) REFERENCES setor(cod_setor),
+CONSTRAINT fk_cod_do_local FOREIGN KEY (fk_local) REFERENCES local(cod_local),
+CONSTRAINT fk_cod_do_cliente FOREIGN KEY (fk_cliente) REFERENCES clientes(cod_cliente)
+);
+
+CREATE TABLE agenda(
+cod_agenda INT(6) AUTO_INCREMENT NOT NULL,
+fk_servico INT(6) NOT NULL,
+fk_func INT(6) NOT NULL,
+CONSTRAINT pk_cod_agenda PRIMARY KEY (cod_agenda),
+CONSTRAINT fk_codigo_servico FOREIGN KEY (fk_servico)REFERENCES servicos(cod_servico),
+CONSTRAINT u_duplserv UNIQUE (fk_servico,fk_func)
+);
+
+CREATE TABLE andamento(
+cod_andamento INT(6) AUTO_INCREMENT NOT NULL,
+saida_produto TIMESTAMP,
+retorno_produto TIMESTAMP,
+descricao_servico VARCHAR(250),
+fk_cod_produto INT(6) NOT NULL,
+fk_agenda INT(6) NOT NULL,
+fk_cod_servicos INT(6) NOT NULL,
+fk_cod_func INT(6) NOT NULL,
+CONSTRAINT pk_andamento PRIMARY KEY (cod_andamento),
+CONSTRAINT fk_codigo_prod FOREIGN KEY (fk_cod_produto) REFERENCES produto(cod_produto),
+CONSTRAINT fk_cod_agenda FOREIGN KEY (fk_agenda) REFERENCES agenda(cod_agenda),
+CONSTRAINT fk_codigo_servicos FOREIGN KEY (fk_cod_servicos) REFERENCES servicos(cod_servico)
+);
+
+CREATE TABLE produto_local(
+cod_local_do_produto INT(6) AUTO_INCREMENT NOT NULL,
+fk_produto INT(6) NOT NULL,
+fk_cod_local INT(6) NOT NULL,
+data_entrada TIMESTAMP NOT NULL,
+CONSTRAINT pk_cod_local_do_produto PRIMARY KEY (cod_local_do_produto),
+CONSTRAINT fk_codigo_produto FOREIGN KEY (fk_produto)REFERENCES produto(cod_produto),
+CONSTRAINT fk_codigo_local FOREIGN KEY (fk_cod_local)REFERENCES local(cod_local)
+);
+
+INSERT INTO `setor` (`cod_setor`, `nome_setor`) VALUES
+('1', 'TI/AudioVisual');
+
+INSERT INTO `clientes` (`nome_cliente`,`cpf`,`ra`,`tipo`,`acervo`,`senha`) VALUES
+('Keveny Richard', 03541175214, 12274, 1, 1,'202cb962ac59075b964b07152d234b70');
+
+INSERT INTO `clientes` (`cod_cliente`, `nome_cliente`, `cpf`, `ra`, `tipo`, `acervo`, `senha`) VALUES
+(NULL, 'usuario', '12345678909', '12345', '0', NULL, '202cb962ac59075b964b07152d234b70');
+
+INSERT INTO `clientes` (`cod_cliente`, `nome_cliente`, `cpf`, `ra`, `tipo`, `acervo`, `senha`) VALUES
+(NULL, 'ADMINISTRADOR GERAL', '00000000000', '00000', '2', '1', '202cb962ac59075b964b07152d234b70');
+
+INSERT INTO `clientes` (`cod_cliente`, `nome_cliente`, `cpf`, `ra`, `tipo`, `acervo`, `senha`) VALUES
+(NULL, 'Teste', '03333333333', '33333', '1', '1', '202cb962ac59075b964b07152d234b70');
+
+INSERT INTO `local` (`nome_local`) VALUES
+('Nivel A'),
+('Laboratório Pós'),
+('Sala De Aula - A01'),
+('Sala De Aula - Pós 01'),
+('Sala De Aula - Pós 02'),
+('Sala De Aula - Pós 03'),
+('Sala De Aula - Pós 04'),
+('Sala De Aula - Pós 05'),
+('Sala De Aula - Pós 06'),
+('Sala De Aula - Pós 07'),
+('Sala De Aula - Pós 08'),
+('Sala De Aula - Pós 09'),
+('Sala De Aula - Pós 10'),
+('Nivel B'),
+('Sala De Aula - B01'),
+('Sala De Aula - B02'),
+('Sala De Aula - B03'),
+('Sala De Aula - B04'),
+('Sala De Aula - B05'),
+('Sala De Aula - B06'),
+('Sala De Aula - B07'),
+('Sala De Aula - B08'),
+('Sala De Aula - B09'),
+('Sala De Aula - B10'),
+('Sala De Aula - B11'),
+('Nivel C'),
+('Sala De Aula - C01'),
+('Sala De Aula - C02'),
+('Sala De Aula - C03'),
+('Sala De Aula - C04'),
+('Sala De Aula - C05'),
+('Sala De Aula - C06'),
+('Sala De Aula - C10'),
+('Sala De Aula - C11'),
+('Sala De Aula - C12'),
+('Sala De Aula - C13'),
+('Sala De Aula - C14'),
+('Sala De Aula - C15'),
+('Sala De Aula - C16'),
+('Sala De Aula - C17'),
+('Sala De Aula - C18'),
+('Sala De Aula - C19'),
+('Sala De Aula - C20'),
+('Sala De Aula - C21'),
+('Sala De Aula - C22'),
+('Sala De Aula - C23'),
+('Nivel D'),
+('Biblioteca'),
+('Próximo a Biblioteca'),
+('Audio Visual'),
+('Próximo ao Audio Visual'),
+('Mezanino'),
+('Próximo ao Mezanino'),
+('Sala De Aula - D01'),
+('Sala De Aula - D02'),
+('Sala De Aula - D03'),
+('Sala De Aula - D04'),
+('Sala De Aula - D05'),
+('Sala De Aula - D06'),
+('Sala De Aula - D07'),
+('Sala De Aula - D08'),
+('Sala De Aula - D09'),
+('Sala De Aula - D10'),
+('Sala De Aula - D11'),
+('Sala De Aula - D12'),
+('Sala De Aula - D13'),
+('Sala De Aula - D14'),
+('Sala De Aula - D15'),
+('Sala De Aula - D16'),
+('Sala De Aula - D17'),
+('Sala De Aula - D18'),
+('Sala De Aula - D19'),
+('Sala De Aula - D20'),
+('Sala De Aula - D21'),
+('Sala De Aula - D22'),
+('Sala De Aula - D23'),
+('Sala De Aula - D24'),
+('Sala De Aula - D25'),
+('Sala De Aula - D26'),
+('Sala De Aula - D27'),
+('Sala De Aula - D28'),
+('Sala De Aula - D29'),
+('Sala De Aula - D30'),
+('Sala De Aula - D31'),
+('Sala De Aula - D32'),
+('Sala De Aula - D33'),
+('Sala De Aula - D34'),
+('Nivel E'),
+('Sala De Aula - E01'),
+('Sala De Aula - E02'),
+('Sala De Aula - E03'),
+('Sala De Aula - E04'),
+('Sala De Aula - E05'),
+('Nenhuma Das Anteriores')
+;
+
+INSERT INTO `servicos` (`descricao`,`fk_local`,`fk_cliente`,`fk_setor`,`data_agendado`) VALUES
+('projetor com problema','1','3','1','2022-12-19 16:38:13');
+
+INSERT INTO `produto` (`cod_produto`, `nome_produto`, `quantidade`, `patrimonio`, `garantia`, `ativo`) VALUES
+(NULL, 'Cabo HDMI', '2', '', NULL, '0');
+
+INSERT INTO `produto_local` (`cod_local_do_produto`, `fk_produto`, `fk_cod_local`, `data_entrada`) VALUES
+(NULL, '1', '50', '2022-11-15 19:59:00');
